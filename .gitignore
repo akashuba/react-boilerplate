@@ -9,6 +9,9 @@
 # production
 /build
 
+# bundle
+/dist
+
 # ide config
 .vscode/
 
