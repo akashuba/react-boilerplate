@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open --hot",
     "start-server": "webpack -w & nodemon server.js",
-    "build": "webpack --config webpackNew.config.js --mode production",
+    "build": "webpack --config webpack.config.js --mode production",
     "build-server": "babel ./src/server -d dist/server",
     "start:server": "node ./dist/server/index.js",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json"
