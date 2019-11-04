@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production",
+    "start-server": "webpack -w & nodemon server.js",
+    "build": "webpack --config webpackNew.config.js --mode production",
+    "build-server": "babel ./src/server -d dist/server",
+    "start:server": "node ./dist/server/index.js",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "author": "Alex_Ka",
@@ -15,6 +18,7 @@
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "@babel/cli": "^7.6.4",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "css-loader": "^2.1.1",
@@ -27,6 +31,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.0"
