@@ -5,20 +5,20 @@ import { App } from '../components/App'
 
 const app = express()
 
-app.use(express.static('public'))
+app.use(express.static( 'dist'))
 
 app.get('*', (req, res) => {
 	res.send(`
       <!DOCTYPE html>
-      <head>
-        <title>Universal Reacl</title>
-        <link rel="stylesheet" href="/css/main.css">
-        <script src="/bundle.js" defer></script>
-      </head>
-      <body>
-        <div id="root">${renderToString(<App />)}</div>
-      </body>
-    </html>
+      <html>
+        <head>
+          <title>Universal React</title>
+          <link rel="stylesheet" href="/css/main.css">
+        </head>
+        <body>
+          <div id="root">${renderToString(<App />)}</div>
+        </body>
+      </html>
   `)
 })
 

@@ -4,9 +4,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
 	entry: './src/server/index.js',
+	target: 'node',
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: 'index_buble.js',
+		filename: 'server.js',
+		libraryTarget: 'commonjs2',
 	},
 	module: {
 		rules: [
