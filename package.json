@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --config webpack.config.js --mode production",
     "build:server": "webpack --config webpack-server.config.js --mode production",
-    "start:server": "node ./dist/server.js",
+    "start:server": "node ./dist/server/server.js",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "author": "Alex_Ka",

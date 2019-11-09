@@ -6,7 +6,7 @@ module.exports = {
 	entry: './src/server/index.js',
 	target: 'node',
 	output: {
-		path: path.join(__dirname, '/dist'),
+		path: path.join(__dirname, '/dist/server'),
 		filename: 'server.js',
 		libraryTarget: 'commonjs2',
 	},

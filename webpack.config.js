@@ -32,7 +32,7 @@ module.exports = {
 			template: './src/index.html',
 		}),
 		new BundleAnalyzerPlugin({
-			analyzerMode: 'disabled',
+			analyzerMode: 'server',
 			generateStatsFile: true,
 			statsOptions: { source: false },
 		}),

@@ -8,7 +8,7 @@ import { App } from '../components/App'
 const sheet = new ServerStyleSheet()
 const app = express()
 
-app.use(express.static( 'dist'))
+app.use(express.static( 'dist/server'))
 
 try {
   var appHtml = renderToString(sheet.collectStyles(<App />))
