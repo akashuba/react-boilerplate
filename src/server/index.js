@@ -1,11 +1,24 @@
 import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { ServerStyleSheet } from 'styled-components'
+
 import { App } from '../components/App'
 
+const sheet = new ServerStyleSheet()
 const app = express()
 
 app.use(express.static( 'dist'))
+
+try {
+  var appHtml = renderToString(sheet.collectStyles(<App />))
+  var styleTags = sheet.getStyleTags()
+  
+} catch (error) {
+  console.error(error)
+} finally {
+  sheet.seal()
+}
 
 app.get('*', (req, res) => {
 	res.send(`
@@ -13,10 +26,10 @@ app.get('*', (req, res) => {
       <html>
         <head>
           <title>Universal React</title>
-          <link rel="stylesheet" href="/css/main.css">
+          ${styleTags}
         </head>
         <body>
-          <div id="root">${renderToString(<App />)}</div>
+          <div id="root">${appHtml}</div>
         </body>
       </html>
   `)
