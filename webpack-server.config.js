@@ -29,14 +29,4 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: './src/index.html',
-		}),
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'disabled',
-			generateStatsFile: true,
-			statsOptions: { source: false },
-		}),
-	],
 }
