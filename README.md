@@ -1,6 +1,6 @@
 ## React Webpack boilerplate WIP
 
-Boilerplate for react apps with: react, styled-components, ssr.
+Boilerplate for react apps with: react ⚛️, styled-components 💅, ssr.
 
 ### Script commands
 + npm start - start dev server
