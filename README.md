@@ -11,3 +11,7 @@ Boilerplate for react apps with: react ⚛️, styled-components 💅, ssr.
 ### Lighthouse audit
 + [Without SSR](https://s.mail.ru/Giz9/rdPVNA2Gj)
 + [With SSR](https://s.mail.ru/5Xdg/L5V22pmk2)
+
+### To do
+- [ ] Redux
+- [ ] React Router
