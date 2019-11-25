@@ -14,4 +14,5 @@ Boilerplate for react apps with: React ⚛️, styled-components 💅, SSR.
 
 ### To do
 - [ ] Redux
+    + [configureStore](https://redux-toolkit.js.org/api/configurestore/) - with thunk and DevTools
 - [ ] React Router
