@@ -1,6 +1,6 @@
 ## React Webpack boilerplate WIP
 
-Boilerplate for react apps with: react ⚛️, styled-components 💅, ssr.
+Boilerplate for react apps with: React ⚛️, styled-components 💅, SSR.
 
 ### Script commands
 + npm start - start dev server
@@ -11,3 +11,8 @@ Boilerplate for react apps with: react ⚛️, styled-components 💅, ssr.
 ### Lighthouse audit
 + [Without SSR](https://s.mail.ru/Giz9/rdPVNA2Gj)
 + [With SSR](https://s.mail.ru/5Xdg/L5V22pmk2)
+
+### To do
+- [ ] Redux
+    + [configureStore](https://redux-toolkit.js.org/api/configurestore/) - with thunk and DevTools
+- [ ] React Router
