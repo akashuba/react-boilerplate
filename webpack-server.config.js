@@ -6,8 +6,8 @@ module.exports = {
 	entry: './src/server/index.js',
 	target: 'node',
 	output: {
-		path: path.join(__dirname, '/dist/server'),
-		filename: 'server.js',
+		path: path.join(__dirname, '/dist'),
+		filename: 'server/server.js',
 		libraryTarget: 'commonjs2',
 	},
 	module: {
@@ -25,7 +25,10 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
-				use: ['file-loader'],
+				loader: 'file-loader',
+				options: {
+					outputPath: 'images',
+				},
 			},
 		],
 	},

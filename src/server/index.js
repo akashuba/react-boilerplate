@@ -8,7 +8,7 @@ import { App } from '../components/App'
 const sheet = new ServerStyleSheet()
 const app = express()
 
-app.use(express.static( 'dist/server'))
+app.use(express.static( 'dist/'))
 
 try {
   var appHtml = renderToString(sheet.collectStyles(<App />))
@@ -21,12 +21,15 @@ try {
 }
 
 app.get('*', (req, res) => {
+  console.log(req.baseUrl);
+  
 	res.send(`
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Universal React</title>
+          <title>SSR React</title>
           ${styleTags}
+          <script src="/js/index_bundle.js" defer></script>
         </head>
         <body>
           <div id="root">${appHtml}</div>

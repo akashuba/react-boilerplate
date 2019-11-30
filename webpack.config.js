@@ -5,8 +5,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 module.exports = {
 	entry: './src/index.js',
 	output: {
-		path: path.join(__dirname, '/dist'),
-		filename: 'index_bundle.js',
+		path: path.join(__dirname, '/dist/'),
+		filename: 'js/index_bundle.js',
 	},
 	module: {
 		rules: [
@@ -23,18 +23,21 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
-				use: ['file-loader'],
+				loader: 'file-loader',
+				options: {
+					outputPath: 'images',
+				},
 			},
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: './src/index.html',
-		}),
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'server',
-			generateStatsFile: true,
-			statsOptions: { source: false },
-		}),
+		// new HtmlWebpackPlugin({
+		// 	template: './src/index.html',
+		// }),
+		// new BundleAnalyzerPlugin({
+		// 	analyzerMode: 'server',
+		// 	generateStatsFile: true,
+		// 	statsOptions: { source: false },
+		// }),
 	],
 }
