@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import  ImageDoggy  from '../assets/doggy.gif'
 
 export const App = () => {
-  console.log(ImageDoggy);
   
 	return (
 		<div>
