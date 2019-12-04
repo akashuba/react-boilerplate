@@ -4,8 +4,9 @@ Boilerplate for react apps with: React ⚛️, styled-components 💅, SSR.
 
 ### Script commands
 + npm start - start dev server
-+ npm build:server - build for ssr
-+ npm start:server - start ssr
++ npm run build - create bundle and assets
++ npm run build:server - build for ssr
++ npm run start:server - start ssr
 + npm run bundle-report - run bundle analyzer
 
 ### Lighthouse audit
