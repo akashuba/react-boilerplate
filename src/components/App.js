@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+
+import { longListFetch } from "../api/longList";
+
 import ImageDoggy from '../assets/doggy.gif'
 
 export class App extends React.Component {
 	
 	componentDidMount() {
-		console.log('component App was mounted')
+		longListFetch().then((data) => {
+			console.log(data)
+		})
 	}
 
 	onButtonClick = () => {
