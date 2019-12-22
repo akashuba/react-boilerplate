@@ -7,10 +7,13 @@ import { longListData } from '../fixtures/longListData'
 import { App } from '../components/App'
 
 var request = require('request')
+var cors = require('cors')
 
 const sheet = new ServerStyleSheet()
 const app = express()
 let initial_state
+
+app.use(cors())
 
 app.use(express.static('dist/'))
 

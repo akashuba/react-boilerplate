@@ -1,5 +1,3 @@
-import { longListData } from "../fixtures/longListData";
-
 export const longListFetch = async () => {
-    return Promise.resolve(longListData)
+   return fetch('http://localhost:3000/api/data')
 }

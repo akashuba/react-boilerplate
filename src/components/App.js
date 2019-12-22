@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { longListFetch } from "../api/longList";
+import { longListFetch } from '../api/longList'
 
 import ImageDoggy from '../assets/doggy.gif'
 
 export class App extends React.Component {
-	
 	componentDidMount() {
-		longListFetch().then((data) => {
-			console.log(data)
+		longListFetch().then(async response => {
+			if (response.status === 200) {
+				console.log(await response.json())
+			} else {
+				console.log('Error: ', response.status)
+			}
 		})
 	}
 
@@ -51,4 +54,4 @@ const Button = styled.div`
 	border: 1px solid black;
 	border-radius: 5px;
 	cursor: pointer;
-`;
+`
