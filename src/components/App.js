@@ -1,15 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import { longListFetch } from '../api/longList'
 
+import { fetchListAction } from '../redux/actions/fetchListAction'
+
 import ImageDoggy from '../assets/doggy.gif'
 
-export class App extends React.Component {
+export class ViewdApp extends React.Component {
 	componentDidMount() {
 		longListFetch().then(async response => {
 			if (response.status === 200) {
-				console.log(await response.json())
+				const longListData = await response.json()
+
+				this.props.longListFetchDispatch(longListData)
 			} else {
 				console.log('Error: ', response.status)
 			}
@@ -21,6 +26,9 @@ export class App extends React.Component {
 	}
 
 	render() {
+		const list = this.props && this.props.list
+		console.log('list ', list)
+
 		return (
 			<div>
 				<StyledH1>My React App!</StyledH1>
@@ -28,10 +36,32 @@ export class App extends React.Component {
 					<Doggy src={ImageDoggy} />
 				</DoggyWrapper>
 				<Button onClick={this.onButtonClick}>Button</Button>
+				<ul>
+					{list &&
+						list.map((item, index) => {
+							return <ListItem key={index}>{item.name}</ListItem>
+						})}
+				</ul>
 			</div>
 		)
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		list: state.list,
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		longListFetchDispatch: list => {
+			dispatch(fetchListAction(list))
+		},
+	}
+}
+
+export const App = connect(mapStateToProps, mapDispatchToProps)(ViewdApp)
 
 const StyledH1 = styled.h1`
 	color: #27aedb;
@@ -53,5 +83,18 @@ const Button = styled.div`
 	height: 30px;
 	border: 1px solid black;
 	border-radius: 5px;
+	margin-left: 40px;
 	cursor: pointer;
+`
+
+const ListItem = styled.i`
+	display: block;
+	border: 1px solid #ece5e5;
+	padding: 5px;
+	width: 200px;
+	font-style: normal;
+
+	&:hover {
+		background-color: #f4f4f4;
+	}
 `
