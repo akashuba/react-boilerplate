@@ -17,7 +17,5 @@ Redux store version can be seen in 'with_redux' branch.
 + [Without SSR](https://s.mail.ru/Giz9/rdPVNA2Gj)
 + [With SSR](https://s.mail.ru/5Xdg/L5V22pmk2)
 
-### To do
-- [ ] Redux
-    + [configureStore](https://redux-toolkit.js.org/api/configurestore/) - with thunk and DevTools
-- [ ] React Router
+### Additional
+Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-boilerplate/tree/with_redux)
