@@ -2,23 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { longListFetch } from '../api/longList'
-
 import { fetchListAction } from '../redux/actions/fetchListAction'
 
 import ImageDoggy from '../assets/doggy.gif'
 
 export class ViewdApp extends React.Component {
 	componentDidMount() {
-		longListFetch().then(async response => {
-			if (response.status === 200) {
-				const longListData = await response.json()
-
-				this.props.longListFetchDispatch(longListData)
-			} else {
-				console.log('Error: ', response.status)
-			}
-		})
+		this.props.longListFetchDispatch()
 	}
 
 	onButtonClick = () => {
@@ -55,8 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		longListFetchDispatch: list => {
-			dispatch(fetchListAction(list))
+		longListFetchDispatch: () => {
+			dispatch(fetchListAction())
 		},
 	}
 }
