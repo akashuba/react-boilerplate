@@ -1,9 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import { longListFetch } from '../api/longList'
 
 import ImageDoggy from '../assets/doggy.gif'
+
+export const counterState = observable({
+	counter: 0,
+
+	increment() {
+		this.counter++;
+	},
+	decrement() {
+		this.counter--;
+	}
+})
+
+@observer
+class CounterView extends React.Component  {
+	render() {
+		console.log(this.props.store.counter);
+		
+		const {store} = this.props;
+		return (
+			<div>
+				<div>Counter value: {store.counter}</div>
+				<button onClick={() => {store.increment()}}>+1</button>
+				<button onClick={() => {store.decrement()}}>-1</button>
+			</div>
+		)
+	}
+}
 
 export class App extends React.Component {
 	componentDidMount() {
@@ -21,6 +50,7 @@ export class App extends React.Component {
 	}
 
 	render() {
+		
 		return (
 			<div>
 				<StyledH1>My React App!</StyledH1>
@@ -28,6 +58,7 @@ export class App extends React.Component {
 					<Doggy src={ImageDoggy} />
 				</DoggyWrapper>
 				<Button onClick={this.onButtonClick}>Button</Button>
+				<CounterView store={counterState}/>
 			</div>
 		)
 	}
