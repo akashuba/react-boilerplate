@@ -17,3 +17,5 @@ SSR server also provide testing data so it must be running first.
 
 ### Additional
 Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-boilerplate/tree/with_redux)
+
+MobX experiments [mobX branch](https://github.com/akashuba/react-boilerplate/tree/mobX)
