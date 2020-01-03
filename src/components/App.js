@@ -1,27 +1,50 @@
 import React from 'react'
 import styled from 'styled-components'
-import { observable } from 'mobx';
+import { observable, decorate, action, configure, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { longListFetch } from '../api/longList'
 
 import ImageDoggy from '../assets/doggy.gif'
 
-export const counterState = observable({
-	counter: 0,
+configure({ enforceActions: 'observed' });
+
+class State {
+	counter = 0;
+	listOfData = null;
 
 	increment() {
 		this.counter++;
-	},
+	}
+
 	decrement() {
 		this.counter--;
 	}
+
+	getApiData() {
+		longListFetch()
+			.then(response => response.json())
+			.then(data => {
+				runInAction(() => {
+					this.listOfData = JSON.stringify(data);
+				})
+			})
+	}
+}
+
+decorate(State, {
+	counter: observable,
+	listOfData: observable,
+	increment: action,
+	decrement: action,
+	getApiData: action.bound,
 })
+
+const appStore = new State()
 
 @observer
 class CounterView extends React.Component  {
 	render() {
-		console.log(this.props.store.counter);
 		
 		const {store} = this.props;
 		return (
@@ -29,21 +52,15 @@ class CounterView extends React.Component  {
 				<div>Counter value: {store.counter}</div>
 				<button onClick={() => {store.increment()}}>+1</button>
 				<button onClick={() => {store.decrement()}}>-1</button>
+				<button onClick={() => {store.getApiData()}}>fetch API</button>
+				<h3>Fetched Data</h3>
+				<div>{store.listOfData }</div>
 			</div>
 		)
 	}
 }
 
 export class App extends React.Component {
-	componentDidMount() {
-		longListFetch().then(async response => {
-			if (response.status === 200) {
-				console.log(await response.json())
-			} else {
-				console.log('Error: ', response.status)
-			}
-		})
-	}
 
 	onButtonClick = () => {
 		console.log('button was clicked')
@@ -58,7 +75,7 @@ export class App extends React.Component {
 					<Doggy src={ImageDoggy} />
 				</DoggyWrapper>
 				<Button onClick={this.onButtonClick}>Button</Button>
-				<CounterView store={counterState}/>
+				<CounterView store={appStore}/>
 			</div>
 		)
 	}
