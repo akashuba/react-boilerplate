@@ -1,46 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { observable, decorate, action, configure, runInAction } from 'mobx';
+import { configure } from 'mobx';
 import { observer } from 'mobx-react';
 
-import { longListFetch } from '../api/longList'
+import { appStore } from '../mobX/store'
 
 import ImageDoggy from '../assets/doggy.gif'
 
 configure({ enforceActions: 'observed' });
-
-class State {
-	counter = 0;
-	listOfData = null;
-
-	increment() {
-		this.counter++;
-	}
-
-	decrement() {
-		this.counter--;
-	}
-
-	getApiData() {
-		longListFetch()
-			.then(response => response.json())
-			.then(data => {
-				runInAction(() => {
-					this.listOfData = JSON.stringify(data);
-				})
-			})
-	}
-}
-
-decorate(State, {
-	counter: observable,
-	listOfData: observable,
-	increment: action,
-	decrement: action,
-	getApiData: action.bound,
-})
-
-const appStore = new State()
 
 @observer
 class CounterView extends React.Component  {
