@@ -19,3 +19,5 @@ Redux store version can be seen in 'with_redux' branch.
 
 ### Additional
 Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-boilerplate/tree/with_redux)
+
+MobX experiments [mobX branch](https://github.com/akashuba/react-boilerplate/tree/mobX)
