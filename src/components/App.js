@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { configure } from 'mobx';
+import { configure, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { appStore } from '../mobX/store'
@@ -12,7 +12,8 @@ configure({ enforceActions: 'observed' });
 @observer
 class CounterView extends React.Component  {
 	render() {
-		
+		console.log('listOfData',toJS( this.props.store.listOfData));
+
 		const {store} = this.props;
 		return (
 			<div>
@@ -21,7 +22,12 @@ class CounterView extends React.Component  {
 				<button onClick={() => {store.decrement()}}>-1</button>
 				<button onClick={() => {store.getApiData()}}>fetch API</button>
 				<h3>Fetched Data</h3>
-				<div>{store.listOfData }</div>
+				<ul>{
+						store.listOfData.map((item, index) =>
+						<li key={index}>{item && item.name}</li>
+						)
+					}
+				</ul>
 			</div>
 		)
 	}

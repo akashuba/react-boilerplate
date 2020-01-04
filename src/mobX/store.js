@@ -4,7 +4,7 @@ import { longListFetch } from '../api/longList'
 
 class State {
 	counter = 0;
-	listOfData = null;
+	listOfData = [];
 
 	increment() {
 		this.counter++;
@@ -19,7 +19,7 @@ class State {
 			.then(response => response.json())
 			.then(data => {
 				runInAction(() => {
-					this.listOfData = JSON.stringify(data);
+					this.listOfData.push(...data);
 				})
 			})
 	}
