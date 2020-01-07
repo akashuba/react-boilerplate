@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { longListFetch } from '../api/longList'
+import { Form } from './Form'
 
 import ImageDoggy from '../assets/doggy.gif'
 
@@ -28,6 +29,7 @@ export class App extends React.Component {
 					<Doggy src={ImageDoggy} />
 				</DoggyWrapper>
 				<Button onClick={this.onButtonClick}>Button</Button>
+				<Form name="Alex" />
 			</div>
 		)
 	}
