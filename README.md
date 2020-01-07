@@ -8,6 +8,7 @@ Boilerplate for react apps with: React ⚛️, styled-components 💅, SSR.
 + npm run build:server - build for ssr
 + npm run start:server - start ssr
 + npm run bundle-report - run bundle analyzer
++ bash scripts/build -build front and server
 
 SSR server also provide testing data so it must be running first.
 
