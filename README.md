@@ -19,3 +19,5 @@ SSR server also provide testing data so it must be running first.
 Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-boilerplate/tree/with_redux)
 
 MobX experiments [mobX branch](https://github.com/akashuba/react-boilerplate/tree/mobX)
+
+Jest, react-testing-library [tests branch](https://github.com/akashuba/react-boilerplate/tree/tests)
