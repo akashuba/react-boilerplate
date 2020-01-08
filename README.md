@@ -21,4 +21,4 @@ Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-b
 
 MobX experiments [mobX branch](https://github.com/akashuba/react-boilerplate/tree/mobX)
 
-Jest, react-testing-library [tests branch](https://github.com/akashuba/react-boilerplate/tree/tests)
+Jest, react-testing-library, Enzyme [tests branch](https://github.com/akashuba/react-boilerplate/tree/tests)
