@@ -25,6 +25,7 @@ export const Form = props => {
 				placeholder='name'
 				// maxLength="20"
 				onChange={onNameChange}
+				data-testid='name_input'
 			/>
 			<button type='submit'>submit</button>
 		</FormWrapper>

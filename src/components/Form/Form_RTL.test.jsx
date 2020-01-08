@@ -12,18 +12,18 @@ describe('react-testing-library', () => {
 		expect(element).toBeInTheDocument()
 	})
 	test('Input resive name prop', () => {
-		const { getByPlaceholderText } = render(<Form name='Jimmy' />)
-		const input_name = getByPlaceholderText('name')
+		const { getByTestId } = render(<Form name='Jimmy' />)
+		const input_name = getByTestId('name_input')
 
 		expect(input_name).toHaveValue('Jimmy')
 	})
 	test('Input max length 20 symbols', async () => {
-		const { getByPlaceholderText, debug } = render(<Form name='Irvin' />)
-		const input_name = getByPlaceholderText('name')
+		const { getByTestId, debug } = render(<Form name='Irvin' />)
+		const input_name = getByTestId('name_input')
 
 		fireEvent.input(input_name, {target: {value: 'Irvim John Kenneth Loud Eugine'}})
 
-		const input_after_change = await waitForElement(() => getByPlaceholderText('name') )
+		const input_after_change = await waitForElement(() => getByTestId('name_input') )
 
 		expect(input_after_change).toHaveValue('Irvim John Kenneth L')
 	})
