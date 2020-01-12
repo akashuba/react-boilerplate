@@ -5,30 +5,35 @@ export const Form = props => {
 	const [name, setName] = useState(props.name || '')
 
 	const onSubmitClick = event => {
-		console.log(event);
-		
 		event.preventDefault()
-		console.log('submit prevented')
+		props.onSubmit && props.onSubmit();
 	}
 
 	const onNameChange = event => {
-		const name = event.currentTarget.value
-						.slice(0,20)
+		const name = event.currentTarget.value.slice(0,20)
 		setName(name)
 	}
 
 	return (
-		<FormWrapper onSubmit={onSubmitClick} data-testid='form-wrapper'>
-			<input 
-				value={name}
-				type='text'
-				placeholder='name'
-				// maxLength="20"
-				onChange={onNameChange}
-				data-testid='name_input'
-			/>
-			<button type='submit'>submit</button>
-		</FormWrapper>
+		<>
+			<h1>{props.title}</h1>
+			<FormWrapper onSubmit={onSubmitClick} data-testid='form-wrapper'>
+				<input 
+					value={name}
+					type='text'
+					placeholder='name'
+					name="name"
+					onChange={onNameChange}
+					data-testid='name_input'
+				/>
+				<CheckboxLabel>
+					<input type='checkbox' name='checkbox' id='checkbox'/>
+					agree
+				</CheckboxLabel>
+				<button type='submit'>submit</button>
+				{/* {console.log(<button type='submit'>submit</button>)} */}
+			</FormWrapper>
+		</>
 	)
 }
 
@@ -36,4 +41,13 @@ const FormWrapper = styled.form`
 	display: flex;
 	flex-direction: column;
 	width: 300px;
+	margin-left: 10px;
+	& > * {
+		margin-bottom: 10px;
+	}
 `
+
+const CheckboxLabel = styled.label`
+	display: flex;
+	align-items: center;
+`;
