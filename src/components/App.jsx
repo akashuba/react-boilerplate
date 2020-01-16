@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Form } from './Form'
+import { Form, formTitle } from './Form'
 
 export class App extends React.Component {
 
 	render() {
 		return (
 			<div>
-				<Form title="Yet another one form" />
+				<Form title={formTitle} />
 			</div>
 		)
 	}

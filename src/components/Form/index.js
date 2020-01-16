@@ -1,2 +1,2 @@
-import { Form } from './Form'
-export { Form }
+export { Form } from './Form'
+export { formTitle } from './const'

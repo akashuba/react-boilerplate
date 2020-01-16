@@ -27,7 +27,7 @@ export const Form = props => {
 					data-testid='name_input'
 				/>
 				<CheckboxLabel>
-					<input type='checkbox' name='checkbox' id='checkbox'/>
+					<input type='checkbox' name='checkbox'/>
 					agree
 				</CheckboxLabel>
 				<button type='submit'>submit</button>

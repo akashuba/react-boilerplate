@@ -1,42 +1,54 @@
-import React from 'react'
-import { render, fireEvent, waitForElement } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import React from 'react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
-import { Form } from './Form'
+import { Form, formTitle } from './index';
 
 describe('react-testing-library', () => {
-	test('Should render component', () => {
-		const { getByTestId, queryByText, rerender, debug } = render(<Form />)
+	test('Should render components', () => {
+		const { getByTestId, getByText, getByLabelText } = render(<Form />);
 
-		expect(getByTestId('name_input')).toBeInTheDocument()
-		expect(queryByText('submit')).toBeInTheDocument()
-	})
+		// console.log(getByTestId('name_input'));
+		expect(getByTestId('name_input')).toBeInTheDocument();
+		expect(getByText('submit')).toBeInTheDocument();
+		expect(getByLabelText('agree')).toBeInTheDocument();
+	});
 
-	test('Input resive name prop', () => {
-		const { getByTestId } = render(<Form name='Jimmy' />)
-		const input_name = getByTestId('name_input')
+	test('Should change title', () => {
+		const { getByText, rerender } = render(<Form title={formTitle} />);
+		expect(getByText(formTitle)).toBeInTheDocument();
 
-		expect(input_name).toHaveValue('Jimmy')
-	})
+		const titleText = '¯|_(ツ)_/¯';
+		rerender(<Form title={titleText} />);
+		expect(getByText(titleText).textContent).toBe(titleText);
+	});
 
-	test('Should change title prop and input value', async () => {
-		const onSubmit = jest.fn();
-		const { getByTestId, getByText, queryByText, rerender, debug } = render(<Form onSubmit={onSubmit}/>)
-		const input_name = getByTestId('name_input')
-		const submit_button = getByText('submit')
+	test('Should change input value', async () => {
+		const { getByTestId, getByText, getByLabelText, debug } = render(<Form />);
+		expect(getByLabelText('agree').checked).toEqual(false);
 
-		fireEvent.input(input_name, {target: {value: 'Irvim John Kenneth Loud Eugine'}})
-		const input_after_change = await waitForElement(() => getByTestId('name_input'))
-		fireEvent.click(submit_button)
+		fireEvent.input(getByTestId('name_input'),
+			{ target: { value: 'Irvim John Kenneth Loud Eugine' } }
+		);
+		fireEvent.click(getByLabelText('agree'));
+
+		const input_name = await waitForElement(() => getByTestId('name_input'));
+		const input_checkbox = await waitForElement(() => getByLabelText('agree'));
 
 		// console.log(debug());
 		// console.log(input_after_change);
-		expect(onSubmit).toHaveBeenCalledTimes(1);
-		expect(input_after_change.value.length).toEqual(20)
-		expect(input_after_change).toHaveValue('Irvim John Kenneth L')
+		expect(input_name.value.length).toEqual(20);
+		expect(input_name).toHaveValue('Irvim John Kenneth L');
+		expect(input_checkbox.checked).toEqual(true);
+	});
 
-		const titleText = '¯|_(ツ)_/¯'
-		rerender(<Form  title={titleText} />)
-		expect(queryByText(titleText).textContent).toBe(titleText)
-	})
-})
+	test('Should submit form', () => {
+		const onSubmit = jest.fn();
+		const { getByText } = render(<Form onSubmit={onSubmit} />);
+		const submit_button = getByText('submit');
+
+		fireEvent.click(submit_button);
+
+		expect(onSubmit).toHaveBeenCalledTimes(1);
+	});
+});
