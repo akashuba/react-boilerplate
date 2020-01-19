@@ -23,7 +23,7 @@ describe('react-testing-library', () => {
 		expect(getByText(titleText).textContent).toBe(titleText);
 	});
 
-	test('Should change input value', async () => {
+	test('Should change inputs values', async () => {
 		const { getByTestId, getByText, getByLabelText, debug } = render(<Form />);
 		expect(getByLabelText('agree').checked).toEqual(false);
 
@@ -36,7 +36,7 @@ describe('react-testing-library', () => {
 		const input_checkbox = await waitForElement(() => getByLabelText('agree'));
 
 		// console.log(debug());
-		// console.log(input_after_change);
+		// console.log(input_checkbox);
 		expect(input_name.value.length).toEqual(20);
 		expect(input_name).toHaveValue('Irvim John Kenneth L');
 		expect(input_checkbox.checked).toEqual(true);

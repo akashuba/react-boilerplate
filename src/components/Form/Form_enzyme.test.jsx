@@ -1,28 +1,48 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Form } from './Form';
+import React from 'react'
+import { shallow, mount } from 'enzyme'
+import { Form } from './Form'
 
 describe('Enzyme', () => {
 	it('Should render component', () => {
-		const wrapper = shallow(<Form name="Alex" />);
+		const wrapper = mount(<Form name='Alex' />)
 
-		// console.log(wrapper.find('[data-testid="name_input"]'));
-		expect(wrapper.find('[data-testid="name_input"]')).toHaveLength(1);
-		expect(wrapper.find('button')).toHaveLength(1);
-	});
+		// console.log(wrapper.debug());
+		expect(wrapper.find('[data-testid="name_input"]')).toHaveLength(1)
+		expect(wrapper.find('[type="checkbox"]')).toHaveLength(1)
+		expect(wrapper.find('button')).toHaveLength(1)
+	})
 
-	it('Should change title prop and input value', () => {
-		const wrapper = mount(<Form name="Alex" />);
-		wrapper.setProps({ title: '¯|_(ツ)_/¯' });
+	it('Should change title', () => {
+		const wrapper = mount(<Form name='Alex' />)
+
+		wrapper.setProps({ title: '¯|_(ツ)_/¯' })
+		expect(wrapper.props().title).toEqual('¯|_(ツ)_/¯')
+	})
+
+	it('Should change inputs values', () => {
+		const wrapper = mount(<Form name='Alex' />)
 		// console.log(wrapper.debug());
 
-		let input = wrapper.find('[data-testid="name_input"]').at(0);
-		input.instance().value = 'Jhon';
-		input.simulate('change');
+		const input_name = wrapper.find('[data-testid="name_input"]').at(0)
+		const input_agreement = wrapper.find('[type="checkbox"]').at(0)
 
-		input = wrapper.find('[data-testid="name_input"]').get(0);
+		input_name.instance().value = 'Jhon'
+		input_name.simulate('change')
+		input_agreement.instance().checked = true
+		input_agreement.simulate('change')
 
-		expect(input.props.value).toEqual('Jhon');
-		expect(wrapper.props().title).toEqual('¯|_(ツ)_/¯');
-	});
-});
+		// console.log(input_agreement.instance())
+		expect(wrapper.find('[data-testid="name_input"]').get(0).props.value).toEqual('Jhon')
+		expect(wrapper.find('[type="checkbox"]').at(0).instance().checked).toEqual(true);
+	})
+
+	it('Should submit form', () => {
+		const onSubmit = jest.fn();
+		const wrapper = mount(<Form onSubmit={onSubmit} />)
+	
+		const submit_button = wrapper.find('[type="submit"]')
+		submit_button.simulate('submit')
+		
+		expect(onSubmit).toHaveBeenCalled();
+	})
+})

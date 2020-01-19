@@ -51,3 +51,12 @@ const CheckboxLabel = styled.label`
 	display: flex;
 	align-items: center;
 `;
+
+const NameField = styled.input`
+	padding: 5px;
+`;
+
+const StyledButton = styled.button`
+	height: 25px;
+	width: 100px;
+`;
