@@ -9,6 +9,7 @@ Boilerplate for react apps with: React ⚛️, styled-components 💅, SSR.
 + npm run start:server - start ssr
 + npm run bundle-report - run bundle analyzer
 + npm test - run jest
++ bash scripts/build -build front and server
 
 SSR server also provide testing data so it must be running first.
 
@@ -20,3 +21,5 @@ SSR server also provide testing data so it must be running first.
 Redux with ssr and thunk [with_redux branch](https://github.com/akashuba/react-boilerplate/tree/with_redux)
 
 MobX experiments [mobX branch](https://github.com/akashuba/react-boilerplate/tree/mobX)
+
+Jest, react-testing-library, Enzyme [tests branch](https://github.com/akashuba/react-boilerplate/tree/tests)
