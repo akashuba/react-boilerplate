@@ -1,8 +1,18 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { render, fireEvent, waitForElement, wait } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Form, formTitle } from './index';
+
+jest.mock('../../api/submiForm')
+import { submiForm } from "../../api/submiForm";
+
+submiForm.mockImplementation( async (url) => {
+	// console.log('200')
+	return {
+		status: 200
+	}
+});
 
 describe('react-testing-library', () => {
 	test('Should render components', () => {
@@ -42,13 +52,19 @@ describe('react-testing-library', () => {
 		expect(input_checkbox.checked).toEqual(true);
 	});
 
-	test('Should submit form', () => {
+	test('Should submit form', async () => {
 		const onSubmit = jest.fn();
-		const { getByText } = render(<Form onSubmit={onSubmit} />);
-		const submit_button = getByText('submit');
-
+		const { getByText, findByText, debug } = render(<Form onSubmit={onSubmit} />);
+		// const submit_button = getByText('submit');
+		const submit_button = await waitForElement(() => findByText('submit'))
+		
 		fireEvent.click(submit_button);
 
+		const submitMessage = await waitForElement(() => findByText('Form was submitted'))
+		// console.log(debug())
+
 		expect(onSubmit).toHaveBeenCalledTimes(1);
+		expect(submiForm).toHaveBeenCalledTimes(1);
+		expect(submitMessage).toBeInTheDocument()
 	});
 });

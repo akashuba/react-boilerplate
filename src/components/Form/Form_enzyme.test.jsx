@@ -1,10 +1,21 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { Form } from './Form'
+import { act } from "react-dom/test-utils";
+
+jest.mock('../../api/submiForm')
+import { submiForm } from "../../api/submiForm";
+
+submiForm.mockImplementation( async (url) => {
+	// console.log('200')
+	return {
+		status: 200
+	}
+});
 
 describe('Enzyme', () => {
 	it('Should render component', () => {
-		const wrapper = shallow(<Form name='Alex' />)
+		const wrapper = mount(<Form name='Alex' />)
 
 		// console.log(wrapper.debug());
 		expect(wrapper.find('[data-testid="name_input"]')).toHaveLength(1)
@@ -43,7 +54,9 @@ describe('Enzyme', () => {
 	
 		const submit_button = wrapper.find('[type="submit"]')
 		submit_button.simulate('submit')
+		// console.log(wrapper.debug());
 		
 		expect(onSubmit).toHaveBeenCalled();
+		expect(submiForm).toHaveBeenCalledTimes(1);
 	})
 })
