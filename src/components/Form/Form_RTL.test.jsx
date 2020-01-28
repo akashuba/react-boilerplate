@@ -67,4 +67,14 @@ describe('react-testing-library', () => {
 		expect(submiForm).toHaveBeenCalledTimes(1);
 		expect(submitMessage).toBeInTheDocument()
 	});
+
+	test('Should change button text', async () => {
+		const { getByText, debug, queryByText } = render(<Form />);
+
+		fireEvent.click(getByText('button'));
+		const test_button = await waitForElement(() => queryByText('testButtonWasClicked'))
+		// console.log(debug())
+
+		expect(test_button).toHaveTextContent('testButtonWasClicked')
+	});
 });

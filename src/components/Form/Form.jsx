@@ -6,6 +6,7 @@ import { submiForm } from '../../api/submiForm'
 export const Form = props => {
 	const [name, setName] = useState(props.name || '')
 	const [submitted, setSubmitted] = useState('')
+	const [testButton, setTestButton] = useState('button')
 
 	const onSubmitClick = event => {
 		event.preventDefault()
@@ -23,6 +24,10 @@ export const Form = props => {
 	const onNameChange = event => {
 		const name = event.currentTarget.value.slice(0, 20)
 		setName(name)
+	}
+
+	const onTestButtonClick = () => {
+		setTestButton('testButtonWasClicked')
 	}
 
 	return (
@@ -46,6 +51,7 @@ export const Form = props => {
 				{ submitted === 'success' && <div>Form was submitted</div> }
 				{ submitted === 'fault' && <div>Try again</div>  }
 			</FormWrapper>
+			<button id='testButton' type='button' onClick={onTestButtonClick}>{testButton}</button>
 		</>
 	)
 }

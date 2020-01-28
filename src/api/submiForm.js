@@ -1,4 +1,4 @@
-export const submiForm = async (url) => {
+export const submiForm = (url) => {
     return fetch(url, {
         method: 'POST'
     })
