@@ -1,5 +1,6 @@
-export const submiForm = (url) => {
+export const submiForm = (url, formData) => {
     return fetch(url, {
-        method: 'POST'
+		method: 'POST',
+		body: formData
     })
  }

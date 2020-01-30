@@ -10,8 +10,10 @@ export const Form = props => {
 
 	const onSubmitClick = event => {
 		event.preventDefault()
+		const formData = new FormData(event.currentTarget)
+
 		props.onSubmit && props.onSubmit()	
-		submiForm('/submit').then(response => {
+		submiForm('/submit', formData).then(response => {
 
 			if (response.status === 200) {
 				setSubmitted('success')	
@@ -43,7 +45,7 @@ export const Form = props => {
 					data-testid='name_input'
 				/>
 				<CheckboxLabel>
-					<input type='checkbox' name='checkbox' />
+					<input type='checkbox' name='agreement' />
 					agree
 				</CheckboxLabel>
 				<button type='submit'>submit</button>
