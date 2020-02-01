@@ -26,17 +26,17 @@ export const Form = props => {
 	const onNameChange = event => {
 		const name = event.currentTarget.value.slice(0, 20)
 		setName(name)
-	}
+	};
 
 	const onTestButtonClick = () => {
 		setTestButton('testButtonWasClicked')
-	}
+	};
 
 	return (
-		<>
-			<h1>{props.title}</h1>
+		<Container>
+			<Title>{props.title}</Title>
 			<FormWrapper onSubmit={onSubmitClick} data-testid='form-wrapper'>
-				<input
+				<NameField
 					value={name}
 					type='text'
 					placeholder='name'
@@ -48,21 +48,36 @@ export const Form = props => {
 					<input type='checkbox' name='agreement' />
 					agree
 				</CheckboxLabel>
-				<button type='submit'>submit</button>
+				<StyledButton type='submit'>submit</StyledButton>
 				{/* {console.log(<button type='submit'>submit</button>)} */}
 				{ submitted === 'success' && <div>Form was submitted</div> }
 				{ submitted === 'fault' && <div>Try again</div>  }
 			</FormWrapper>
-			<button id='testButton' type='button' onClick={onTestButtonClick}>{testButton}</button>
-		</>
+			<StyledButton
+				id='testButton'
+				type='button'
+				onClick={onTestButtonClick}
+			>
+				{testButton}
+			</StyledButton>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	margin-left: 20px
+`
+
+const Title = styled.h1`
+	font-weight: 500;
+`
 
 const FormWrapper = styled.form`
 	display: flex;
 	flex-direction: column;
 	width: 300px;
-	margin-left: 10px;
+	font-size: 14px;
+	margin-bottom: 20px;
 	& > * {
 		margin-bottom: 10px;
 	}
@@ -71,13 +86,16 @@ const FormWrapper = styled.form`
 const CheckboxLabel = styled.label`
 	display: flex;
 	align-items: center;
+	font-size: 14px;
 `
 
 const NameField = styled.input`
 	padding: 5px;
+	font-size: 14px;
 `
 
 const StyledButton = styled.button`
 	height: 25px;
-	width: 100px;
+	font-size: 14px;
 `
+

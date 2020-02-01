@@ -22,6 +22,7 @@ describe('react-testing-library', () => {
 		expect(getByTestId('name_input')).toBeInTheDocument();
 		expect(getByText('submit')).toBeInTheDocument();
 		expect(getByLabelText('agree')).toBeInTheDocument();
+		expect(getByText('button')).toBeInTheDocument();
 	});
 
 	test('Should change title', () => {

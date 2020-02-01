@@ -12,6 +12,9 @@
 # bundle
 /dist
 
+# bundle
+/.idea
+
 # ide config
 .vscode/
 

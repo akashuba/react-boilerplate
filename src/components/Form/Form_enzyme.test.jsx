@@ -18,9 +18,10 @@ describe('Enzyme', () => {
 		const wrapper = mount(<Form name='Alex' />)
 
 		// console.log(wrapper.debug());
-		expect(wrapper.find('[data-testid="name_input"]')).toHaveLength(1)
+		expect(wrapper.find('input[data-testid="name_input"]')).toHaveLength(1)
 		expect(wrapper.find('[type="checkbox"]')).toHaveLength(1)
-		expect(wrapper.find('[type="submit"]')).toHaveLength(1)
+		expect(wrapper.find('button[type="submit"]')).toHaveLength(1)
+		expect(wrapper.find('button#testButton')).toHaveLength(1)
 	})
 
 	it('Should change title', () => {
@@ -34,7 +35,7 @@ describe('Enzyme', () => {
 	it('Should change inputs values', () => {
 		const wrapper = mount(<Form name='Alex' />)
 
-		const input_name = wrapper.find('[data-testid="name_input"]').at(0)
+		const input_name = wrapper.find('input[data-testid="name_input"]').at(0)
 		const input_agreement = wrapper.find('[type="checkbox"]').at(0)
 
 		input_name.instance().value = 'Irvim John Kenneth Loud Eugine'
