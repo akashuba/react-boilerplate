@@ -12,7 +12,6 @@ export const Form = props => {
 		event.preventDefault()
 		const formData = new FormData(event.currentTarget)
 
-		props.onSubmit && props.onSubmit()	
 		submiForm('/submit', formData).then(response => {
 
 			if (response.status === 200) {
@@ -50,8 +49,9 @@ export const Form = props => {
 				</CheckboxLabel>
 				<StyledButton type='submit'>submit</StyledButton>
 				{/* {console.log(<button type='submit'>submit</button>)} */}
-				{ submitted === 'success' && <div>Form was submitted</div> }
-				{ submitted === 'fault' && <div>Try again</div>  }
+				<div data-testid='submit_status'>
+					{ submitted === 'success' ? 'Form was submitted' : 'Try again'}
+				</div>
 			</FormWrapper>
 			<StyledButton
 				id='testButton'

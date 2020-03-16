@@ -1,7 +1,6 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import { Form } from './Form'
-import { act } from "react-dom/test-utils";
 
 jest.mock('../../api/submiForm')
 import { submiForm } from "../../api/submiForm";
@@ -43,26 +42,24 @@ describe('Enzyme', () => {
 		input_agreement.instance().checked = true
 		input_agreement.simulate('change')
 
-		// console.log(input_agreement.instance())
 		expect(wrapper.find('[data-testid="name_input"]').get(0).props.value).toHaveLength(20)
 		expect(wrapper.find('[data-testid="name_input"]').get(0).props.value).toEqual('Irvim John Kenneth L')
 		expect(wrapper.find('[type="checkbox"]').at(0).instance().checked).toEqual(true);
 	})
 
-	// it('Should submit form', () => {
-	// 	const onSubmit = jest.fn()
-	// 	const wrapper = mount(<Form onSubmit={onSubmit} />)
-	
-	// 	const submit_button = wrapper.find('[type="submit"]')
-	// 	submit_button.simulate('submit')
-	// 	wrapper.update();
+	it('Should submit form', () => {
+		const wrapper = mount(<Form/>)
+		const submit_button = wrapper.find('button[type="submit"]')
 
-	// 	const wrapperUpdated = wrapper.find('[data-testid="form-wrapper"]').at(0)
-	// 	console.log(wrapperUpdated.debug());
-		
-	// 	expect(onSubmit).toHaveBeenCalled();
-	// 	expect(submiForm).toHaveBeenCalledTimes(1);
-	// })
+		submit_button.simulate('submit')
+		wrapper.update();
+
+		const wrapperUpdated = wrapper.find('[data-testid="form-wrapper"]').at(0)
+		const submitStatus = wrapper.find('div[data-testid="submit_status"]').at(0);
+
+		expect(submiForm).toHaveBeenCalledTimes(1);
+		expect(submitStatus.text()).toEqual('Form was submitted')
+	})
 
 	it('Should change button text', () => {
 		const wrapper = mount(<Form name='Alex' />)
