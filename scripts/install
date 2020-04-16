@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# CLEAN node_modules
+echo "CLEAN ./node_modules"
+rm -rf ./node_modules
+
+# INSTALL node_modules
+echo "INSTALL"
+npm install
