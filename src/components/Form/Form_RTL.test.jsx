@@ -16,8 +16,9 @@ submiForm.mockImplementation( async (url) => {
 
 describe('react-testing-library', () => {
 	test('Should render components', () => {
-		const { getByTestId, getByText, getByLabelText } = render(<Form />);
+		const { getByTestId, getByText, getByLabelText, debug } = render(<Form />);
 
+		// console.log(debug())
 		// console.log(getByTestId('name_input'));
 		expect(getByTestId('name_input')).toBeInTheDocument();
 		expect(getByText('submit')).toBeInTheDocument();

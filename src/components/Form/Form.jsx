@@ -8,16 +8,16 @@ export const Form = props => {
 	const [submitted, setSubmitted] = useState('')
 	const [testButton, setTestButton] = useState('button')
 
-	const onSubmitClick = event => {
+	const onFormSubmit = event => {
 		event.preventDefault()
 		const formData = new FormData(event.currentTarget)
 
 		submiForm('/submit', formData).then(response => {
 
 			if (response.status === 200) {
-				setSubmitted('success')	
+				setSubmitted('Form was submitted')	
 			} else {
-				setSubmitted('fault')	
+				setSubmitted('try again')	
 			}
 		})	
 	}
@@ -34,7 +34,7 @@ export const Form = props => {
 	return (
 		<Container>
 			<Title>{props.title}</Title>
-			<FormWrapper onSubmit={onSubmitClick} data-testid='form-wrapper'>
+			<FormWrapper onSubmit={onFormSubmit} data-testid='form-wrapper'>
 				<NameField
 					value={name}
 					type='text'
@@ -50,7 +50,7 @@ export const Form = props => {
 				<StyledButton type='submit'>submit</StyledButton>
 				{/* {console.log(<button type='submit'>submit</button>)} */}
 				<div data-testid='submit_status'>
-					{ submitted === 'success' ? 'Form was submitted' : 'Try again'}
+					{ submitted }
 				</div>
 			</FormWrapper>
 			<StyledButton
