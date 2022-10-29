@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import ImageDoggy from '../assets/doggy.gif';
 import { useAppData } from './useAppData';
+import { TimelineAnimation } from "./TimelineAnimation";
 
 export const App = () => {
 	const list = useAppData();
@@ -14,7 +15,7 @@ export const App = () => {
 
 	return (
 		<Container>
-			<StyledH1>My React App!</StyledH1>
+			{/* <StyledH1>My React App!</StyledH1>
 			<DoggyWrapper>
 				<Doggy src={ImageDoggy} />
 			</DoggyWrapper>
@@ -26,7 +27,8 @@ export const App = () => {
 							return <ListItem key={index}>{item.name}</ListItem>;
 					})}
 				</List>
-			</ListContainer>
+			</ListContainer> */}
+      <TimelineAnimation />
 		</Container>
 	);
 };
